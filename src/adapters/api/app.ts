@@ -26,6 +26,12 @@ app.addHook('onRequest', async (_req, reply) => {
 app.register(integracionRouter);
 app.register(calculosRouter);
 
+// ─── Root endpoint para healthcheck ───────────────────────────────────────────
+app.get('/', async () => {
+  return { status: 'ok' };
+});
+
+
 // ─── Health check ─────────────────────────────────────────────────────────────
 app.get('/health', async () => {
   return { status: 'ok', service: 'cmf-prudential-metrics', timestamp: new Date() };
